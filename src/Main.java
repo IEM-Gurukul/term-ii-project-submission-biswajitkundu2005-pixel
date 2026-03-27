@@ -39,3 +39,12 @@ class Car {
         System.out.println("---------------------------");
     }
 }
+//Add CarRentalSystem Class
+class CarRentalSystem {
+    private Car[] cars;
+    private int carCount;
+
+    public CarRentalSystem(int size) {
+        cars = new Car[size];
+        carCount = 0;
+    }
