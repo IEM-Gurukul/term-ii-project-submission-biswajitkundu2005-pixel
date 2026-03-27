@@ -48,3 +48,11 @@ class CarRentalSystem {
         cars = new Car[size];
         carCount = 0;
     }
+public void addCar(int id, String brand, String model, double rent) {
+    if (carCount < cars.length) {
+        cars[carCount] = new Car(id, brand, model, rent);
+        carCount++;
+    } else {
+        System.out.println("Car storage is full!");
+    }
+}
