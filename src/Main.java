@@ -14,4 +14,28 @@ class Car {
         this.rentPerDay = rentPerDay;
         this.isAvailable = true;
     }
+    // ADD CAR METHODS
+     public int getCarID() {
+        return carID;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void rentCar() {
+        isAvailable = false;
+    }
+
+    public void returnCar() {
+        isAvailable = true;
+    }
+    public void displayCar() {
+        System.out.println("Car ID: " + carID);
+        System.out.println("Brand: " + brand);
+        System.out.println("Model: " + model);
+        System.out.println("Rent per day: Rs. " + rentPerDay);
+        System.out.println("Status: " + (isAvailable ? "Available" : "Rented"));
+        System.out.println("---------------------------");
+    }
 }
