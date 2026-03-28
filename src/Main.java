@@ -56,3 +56,23 @@ public void addCar(int id, String brand, String model, double rent) {
         System.out.println("Car storage is full!");
     }
 }
+public void displayAllCars() {
+    System.out.println("\n===== All Cars =====");
+    for (int i = 0; i < carCount; i++) {
+        cars[i].displayCar();
+    }
+}
+
+public void displayAvailableCars() {
+    System.out.println("\n===== Available Cars =====");
+    boolean found = false;
+    for (int i = 0; i < carCount; i++) {
+        if (cars[i].isAvailable()) {
+            cars[i].displayCar();
+            found = true;
+        }
+    }
+    if (!found) {
+        System.out.println("No cars available right now.");
+    }
+}
