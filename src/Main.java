@@ -76,3 +76,17 @@ public void displayAvailableCars() {
         System.out.println("No cars available right now.");
     }
 }
+public void rentCarByID(int id) {
+    for (int i = 0; i < carCount; i++) {
+        if (cars[i].getCarID() == id) {
+            if (cars[i].isAvailable()) {
+                cars[i].rentCar();
+                System.out.println("Car rented successfully.");
+            } else {
+                System.out.println("Car is already rented.");
+            }
+            return;
+        }
+    }
+    System.out.println("Car ID not found.");
+}
