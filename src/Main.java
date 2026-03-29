@@ -1,5 +1,5 @@
 import java.util.Scanner;
-//Create Car Class
+
 class Car {
     private int carID;
     private String brand;
@@ -14,8 +14,8 @@ class Car {
         this.rentPerDay = rentPerDay;
         this.isAvailable = true;
     }
-    // ADD CAR METHODS
-     public int getCarID() {
+
+    public int getCarID() {
         return carID;
     }
 
@@ -30,6 +30,7 @@ class Car {
     public void returnCar() {
         isAvailable = true;
     }
+
     public void displayCar() {
         System.out.println("Car ID: " + carID);
         System.out.println("Brand: " + brand);
@@ -39,7 +40,7 @@ class Car {
         System.out.println("---------------------------");
     }
 }
-//Add CarRentalSystem Class
+
 class CarRentalSystem {
     private Car[] cars;
     private int carCount;
@@ -48,69 +49,77 @@ class CarRentalSystem {
         cars = new Car[size];
         carCount = 0;
     }
-public void addCar(int id, String brand, String model, double rent) {
-    if (carCount < cars.length) {
-        cars[carCount] = new Car(id, brand, model, rent);
-        carCount++;
-    } else {
-        System.out.println("Car storage is full!");
-    }
-}
-public void displayAllCars() {
-    System.out.println("\n===== All Cars =====");
-    for (int i = 0; i < carCount; i++) {
-        cars[i].displayCar();
-    }
-}
 
-public void displayAvailableCars() {
-    System.out.println("\n===== Available Cars =====");
-    boolean found = false;
-    for (int i = 0; i < carCount; i++) {
-        if (cars[i].isAvailable()) {
+    public void addCar(int id, String brand, String model, double rent) {
+        if (carCount < cars.length) {
+            cars[carCount] = new Car(id, brand, model, rent);
+            carCount++;
+        } else {
+            System.out.println("Car storage is full!");
+        }
+    }
+
+    public void displayAllCars() {
+        System.out.println("\n===== All Cars =====");
+        for (int i = 0; i < carCount; i++) {
             cars[i].displayCar();
-            found = true;
         }
     }
-    if (!found) {
-        System.out.println("No cars available right now.");
-    }
-}
-public void rentCarByID(int id) {
-    for (int i = 0; i < carCount; i++) {
-        if (cars[i].getCarID() == id) {
-            if (cars[i].isAvailable()) {
-                cars[i].rentCar();
-                System.out.println("Car rented successfully.");
-            } else {
-                System.out.println("Car is already rented.");
-            }
-            return;
-        }
-    }
-    System.out.println("Car ID not found.");
-}
-public void returnCarByID(int id) {
-    for (int i = 0; i < carCount; i++) {
-        if (cars[i].getCarID() == id) {
-            if (!cars[i].isAvailable()) {
-                cars[i].returnCar();
-                System.out.println("Car returned successfully.");
-            } else {
-                System.out.println("This car was not rented.");
-            }
-            return;
-        }
-    }
-    System.out.println("Car ID not found.");
-}
 
-import java.util.Scanner;
+    public void displayAvailableCars() {
+        System.out.println("\n===== Available Cars =====");
+        boolean found = false;
+        for (int i = 0; i < carCount; i++) {
+            if (cars[i].isAvailable()) {
+                cars[i].displayCar();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No cars available right now.");
+        }
+    }
+
+    public void rentCarByID(int id) {
+        for (int i = 0; i < carCount; i++) {
+            if (cars[i].getCarID() == id) {
+                if (cars[i].isAvailable()) {
+                    cars[i].rentCar();
+                    System.out.println("Car rented successfully.");
+                } else {
+                    System.out.println("Car is already rented.");
+                }
+                return;
+            }
+        }
+        System.out.println("Car ID not found.");
+    }
+
+    public void returnCarByID(int id) {
+        for (int i = 0; i < carCount; i++) {
+            if (cars[i].getCarID() == id) {
+                if (!cars[i].isAvailable()) {
+                    cars[i].returnCar();
+                    System.out.println("Car returned successfully.");
+                } else {
+                    System.out.println("This car was not rented.");
+                }
+                return;
+            }
+        }
+        System.out.println("Car ID not found.");
+    }
+}
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         CarRentalSystem system = new CarRentalSystem(10);
+
+        system.addCar(101, "Toyota", "Innova", 2500);
+        system.addCar(102, "Maruti", "Swift", 1500);
+        system.addCar(103, "Honda", "City", 2200);
+        system.addCar(104, "Hyundai", "i20", 1800);
 
         int choice, id;
 
@@ -123,10 +132,32 @@ public class Main {
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    system.displayAllCars();
+                    break;
+                case 2:
+                    system.displayAvailableCars();
+                    break;
+                case 3:
+                    System.out.print("Enter Car ID to rent: ");
+                    id = sc.nextInt();
+                    system.rentCarByID(id);
+                    break;
+                case 4:
+                    System.out.print("Enter Car ID to return: ");
+                    id = sc.nextInt();
+                    system.returnCarByID(id);
+                    break;
+                case 5:
+                    System.out.println("Exiting program...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
         } while (choice != 5);
+
+        sc.close();
     }
 }
-system.addCar(101, "Toyota", "Innova", 2500);
-system.addCar(102, "Maruti", "Swift", 1500);
-system.addCar(103, "Honda", "City", 2200);
-system.addCar(104, "Hyundai", "i20", 1800);
