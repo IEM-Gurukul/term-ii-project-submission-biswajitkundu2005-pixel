@@ -104,3 +104,25 @@ public void returnCarByID(int id) {
     }
     System.out.println("Car ID not found.");
 }
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        CarRentalSystem system = new CarRentalSystem(10);
+
+        int choice, id;
+
+        do {
+            System.out.println("\n===== Car Rental System =====");
+            System.out.println("1. Display All Cars");
+            System.out.println("2. Display Available Cars");
+            System.out.println("3. Rent a Car");
+            System.out.println("4. Return a Car");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+        } while (choice != 5);
+    }
+}
