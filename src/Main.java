@@ -90,3 +90,17 @@ public void rentCarByID(int id) {
     }
     System.out.println("Car ID not found.");
 }
+public void returnCarByID(int id) {
+    for (int i = 0; i < carCount; i++) {
+        if (cars[i].getCarID() == id) {
+            if (!cars[i].isAvailable()) {
+                cars[i].returnCar();
+                System.out.println("Car returned successfully.");
+            } else {
+                System.out.println("This car was not rented.");
+            }
+            return;
+        }
+    }
+    System.out.println("Car ID not found.");
+}
