@@ -126,3 +126,7 @@ public class Main {
         } while (choice != 5);
     }
 }
+system.addCar(101, "Toyota", "Innova", 2500);
+system.addCar(102, "Maruti", "Swift", 1500);
+system.addCar(103, "Honda", "City", 2200);
+system.addCar(104, "Hyundai", "i20", 1800);
